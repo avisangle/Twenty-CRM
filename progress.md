@@ -131,7 +131,23 @@ Known: 2 pre-existing typecheck errors in scaffold `src/__tests__/schema.integra
 2 pre-existing scaffold typecheck errors → `yarn typecheck` now 0 errors. `twenty dev --once` synced
 (agent + rolePermissionFlag). Commits f42afff (TCA-5) + 3793b8b (TCA-4), pushed app repo main.
 Design note: agent schema is flat-primitives-only (no min/max) — 0-100 bound lives in field description.
-Both → Done. Remaining: TCA-7 enrichment, TCA-8 views, TCA-9 scoreOnEvent, TCA-10 drainQueue.
+Both → Done.
+
+## 2026-07-21 — TCA-7 + TCA-8 done (subagent)
+
+**TCA-7:** `src/lib/enrich.ts` — genql `CoreApiClient().query` fetching record + linked company +
+recent `timelineActivities` (first 10, DESC). Field names verified vs generated schema. Mocked-client
+unit test. build-prompt.ts extended minimally. Commit 3895e04.
+**TCA-8:** `src/views/{person,opportunity}-leads.view.ts` — INDEX views sorted by leadScore DESC.
+Sync plan: 4 add / 1 change (own component) / 0 destroy — **no standard view touched**. Commit 9274d73.
+typecheck 0, unit 7/7. Both → Done.
+
+Caveats to track: (a) standard Company has no size/industry/employees — enrichment uses
+name/domain/annualRevenue/address (Phase-2: add custom Company fields if scoring needs more);
+(b) whether the app INDEX view is the nav *default* is server-side — **verify/set in UI**
+(the one PRD "default sort" AC needing a live check).
+
+Remaining v1: TCA-9 scoreOnEvent, TCA-10 drainQueue (both now unblocked).
 
 **Open items**
 - Confirm with Twenty team whether apps are derivative works of AGPL core.
