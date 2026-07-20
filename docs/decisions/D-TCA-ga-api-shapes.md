@@ -49,7 +49,15 @@ Person & Opportunity both expose `timelineActivities`, `noteTargets`, `taskTarge
 recent activity via the `timelineActivities` connection (`orderBy: [{ createdAt: DESC }], first: N`),
 optionally joining `note { title bodyV2 createdAt }` / `task` through the target rows.
 
-## Open — carried to TCA-9
+## Q3 RESOLVED at TCA-9 (live, 2026-07-21) — event name is `person.created` (singular)
+
+Live test (created a Person via GraphQL against the sandbox): the databaseEvent trigger fired on
+**`person.created`** — the singular form. `people.created` is NOT used. Pattern is
+`<objectNameSingular>.<action>` (`person.created`/`person.updated`/`opportunity.created`/`opportunity.updated`).
+Also confirmed: one DB trigger per `defineLogicFunction` (settings are singular) → one thin function
+file per (object, action) delegating to a shared handler.
+
+Original (pre-resolution) note retained:
 
 **Q3 event-name pluralization is NOT provable from the installed types** (`eventName: string`, no enum;
 CLI example uses placeholder `objectName.created`). Convention + singular `STANDARD_OBJECTS` keys point

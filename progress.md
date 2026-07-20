@@ -149,6 +149,23 @@ name/domain/annualRevenue/address (Phase-2: add custom Company fields if scoring
 
 Remaining v1: TCA-9 scoreOnEvent, TCA-10 drainQueue (both now unblocked).
 
+## 2026-07-21 — TCA-9 + TCA-10 done → v1 dev COMPLETE (live-verified)
+
+**TCA-9:** one DB trigger per function (SDK limit) → 4 thin trigger files → shared `src/lib/score-on-event.ts`
+(no-signal→SKIPPED, createdBy.source IMPORT→QUEUED, else inline `scoreRecord`). Loop-safe (update triggers
+watch business fields only). Commit 2f7c597.
+**TCA-10:** `drain-queue.function.ts` cron `* * * * *` → drains QUEUED (cap 20/type) via shared `scoreRecord`.
+FAILED terminal for v1 (no retry-count field — bounded-retry = follow-up). Commit 75328cf.
+typecheck 0, unit 14/14, sync ✓ (5 logic functions).
+
+**✅ Q3 resolved live:** trigger fires on `person.created` (singular). Test person → SCORED, leadScore=45
+in ~20s, then cleaned up. Decision record updated.
+
+Follow-ups filed/pending: TCA-11 (custom Company fields, Phase 2). Possible: retry-count field for bounded
+retry. **Manual acceptance still open:** (a) confirm/set the leads view as UI default (sort-by-score AC);
+(b) scoring-quality gate — sanity-check score spread on cold→hot leads with a real pipeline.
+All 9 stories (TCA-2..TCA-10) + spike Done. Both repos pushed.
+
 **Open items**
 - Confirm with Twenty team whether apps are derivative works of AGPL core.
 - Confirm Twenty's native WhatsApp roadmap timing before scheduling 02.
