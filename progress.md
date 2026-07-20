@@ -111,7 +111,19 @@ count-based burst detector — simpler/reliable TCA-9, kills Q6; (2) CoreApiClie
 (3) view sorts use `fieldMetadataUniversalIdentifier` + `ViewSortDirection.DESC`, `ViewKey.INDEX`;
 (4) activity via `timelineActivities`/`noteTargets`/`taskTargets`; (5) `defineField` shape confirmed for TCA-3.
 Open: Q3 event-name pluralization (person.created vs people.created) — verify live at TCA-9.
-Next: TCA-3 (custom fields).
+
+## 2026-07-20 — TCA-3 done (custom fields synced)
+
+8 `defineField` files under `src/fields/` (person + opportunity × leadScore/Summary/ScoredAt/Status),
+referencing `STANDARD_OBJECT_UNIVERSAL_IDENTIFIERS.{person,opportunity}.universalIdentifier`; UUIDs in
+`src/constants/universal-identifiers.ts`. `yarn twenty dev --once` → 8 added, ✓ synced live. Committed +
+pushed (app repo main c768b66). Both repos now on GitHub: avisangle/Twenty-CRM + avisangle/lead-scoring-agent
+(private). TCA-3 → Done.
+
+Known: 2 pre-existing typecheck errors in scaffold `src/__tests__/schema.integration-test.ts`
+(`created.createNote` possibly undefined) — not ours; fix pending. Next: TCA-4 (agent) / TCA-5 (AI role) /
+TCA-8 (views) — all unblocked. Note TCA-5: scaffold `default-role.ts` grants object CRUD but NOT the AI
+permission flag yet — must add `SystemPermissionFlag.AI`.
 
 **Open items**
 - Confirm with Twenty team whether apps are derivative works of AGPL core.
