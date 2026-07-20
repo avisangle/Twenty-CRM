@@ -121,9 +121,17 @@ pushed (app repo main c768b66). Both repos now on GitHub: avisangle/Twenty-CRM +
 (private). TCA-3 → Done.
 
 Known: 2 pre-existing typecheck errors in scaffold `src/__tests__/schema.integration-test.ts`
-(`created.createNote` possibly undefined) — not ours; fix pending. Next: TCA-4 (agent) / TCA-5 (AI role) /
-TCA-8 (views) — all unblocked. Note TCA-5: scaffold `default-role.ts` grants object CRUD but NOT the AI
-permission flag yet — must add `SystemPermissionFlag.AI`.
+(`created.createNote` possibly undefined) — not ours; fix pending.
+
+## 2026-07-20 — TCA-5 + TCA-4 done (subagent)
+
+**TCA-5:** added `permissionFlagUniversalIdentifiers: [SystemPermissionFlag.AI]` to `default-role.ts`.
+**TCA-4:** `src/agents/lead-scorer.agent.ts` (defineAgent, flat `{score,summary}` responseFormat) +
+`src/lib/build-prompt.ts` (person/opportunity prompt builders) + unit test (4/4 pass). Also fixed the
+2 pre-existing scaffold typecheck errors → `yarn typecheck` now 0 errors. `twenty dev --once` synced
+(agent + rolePermissionFlag). Commits f42afff (TCA-5) + 3793b8b (TCA-4), pushed app repo main.
+Design note: agent schema is flat-primitives-only (no min/max) — 0-100 bound lives in field description.
+Both → Done. Remaining: TCA-7 enrichment, TCA-8 views, TCA-9 scoreOnEvent, TCA-10 drainQueue.
 
 **Open items**
 - Confirm with Twenty team whether apps are derivative works of AGPL core.
