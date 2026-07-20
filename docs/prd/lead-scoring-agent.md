@@ -267,6 +267,11 @@ Key components: `src/objects/*` (field extensions), `src/agents/lead-scorer.agen
 
 ## Open Questions
 
+> **Resolved 2026-07-20** by the TCA-6 spike against installed SDK types — see
+> `docs/decisions/D-TCA-ga-api-shapes.md`. Q1/Q2/Q4/Q5 + the `defineField` shape are confirmed;
+> the burst-count heuristic (and Q6) is **replaced** by the native `createdBy.source` ACTOR flag;
+> Q3 (event-name pluralization) is carried to TCA-9 for live confirmation. Original list retained below.
+
 - **Import-source flag:** Does the GA `databaseEvent` payload expose whether a create came from
   CSV import / batch API vs manual UI? If yes, use it instead of the count-based burst heuristic.
 - **CoreApiClient shape:** Confirm exact GA methods for read/write (query-builder

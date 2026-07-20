@@ -49,7 +49,69 @@ Published to Confluence (space SD): hub "Twenty CRM — App Ideas" (page 720897)
 Lead Scoring PRD as child page 753665. Local `docs/prd/lead-scoring-agent.md` remains source
 of truth; other 5 PRDs will slot in as sibling child pages.
 
-Next: user approval → `/breakdown docs/prd/lead-scoring-agent.md`.
+## 2026-07-20 — /breakdown launched (first post-overhaul run)
+
+Jira: no Twenty CRM project existed (only GR/KAN/NEHA/PPA/YA — all unrelated). User created
+**project TCA "Twenty CRM Apps"** (id 10165, next-gen software, Epic→Story→Task→Subtask).
+Confirmed via API after a short propagation delay.
+
+Verified capability limits (user challenged): the Atlassian MCP **cannot create a Jira project
+or Confluence space** — only issues (in an existing project) and pages (in an existing space).
+Terminology: Jira = *projects*, Confluence = *spaces*.
+
+Ran `/breakdown docs/prd/lead-scoring-agent.md` in a general-purpose **subagent**, pinned to
+project TCA only, v1 scope only, Open-Questions → spike issues. Awaiting its issue tree to
+audit against the PRD (watching for wrong-project leakage, invented scope, broken deps,
+missing AC, skill regressions).
+
+Reorg: moved the six idea briefs into per-idea folders under `ideas/<n>-<slug>/` (git mv,
+staged not committed); added `ideas/README.md` index. Left `docs/prd/lead-scoring-agent.md`
+in place (subagent reading it). Root now: decisions.md, progress.md, docs/, ideas/.
+
+## 2026-07-20 — /breakdown completed → 10 issues in TCA
+
+Decomposed Lead Scoring PRD (v1 only) into **Epic TCA-1 + 9 children**, all in project TCA
+(id 10165), correctly parented, Blocks-linked, level-labelled. No leakage to other projects.
+
+Levels: L1 TCA-2 (scaffold) → L2 TCA-3 fields / TCA-4 agent / TCA-5 role / TCA-6 SPIKE (Task) →
+L3 TCA-7 enrichment / TCA-8 views → L4 TCA-9 scoreOnEvent / TCA-10 drainQueue.
+Open Questions: Q1–Q5 → TCA-6 spike; Q6 (burst tuning) → TCA-9. Phase 2 / out-of-scope excluded.
+Skill ran clean — no errors, no wrong-project attempts, no circular deps. Start: `/tdd-prep TCA-2`.
+
+Independently verified via `project = TCA` JQL: 10 issues, all parented to TCA-1, correct
+types/level-labels, zero leakage. First-run abnormalities to note: (1) breakdown's interactive
+approval gates were silently bypassed in the subagent — skill has no non-interactive/auto-approve
+affordance; (2) skill's preferred TDD Confluence child-page was skipped (design embedded in Epic);
+(3) `createJiraIssue.parent` param is mis-documented ("for subtasks" but sets Epic parent).
+
+## 2026-07-20 — App code repo created
+
+Per "own sibling repo" decision: created **~/AI/Personal/lead-scoring-agent/** (git init, main)
+with README (links to PRD, Confluence 753665, Jira TCA-1..10) + node .gitignore. This planning
+repo stays docs-only. Scaffolding (create-twenty-app = TCA-2) deferred: **no Twenty sandbox yet**
+— step zero is spinning one up, then `auth:login`.
+
+## 2026-07-20 — App scaffolded + synced (TCA-2 done)
+
+Sandbox: https://lead-scoring.twenty.com. Toolchain blocker found: SDK 2.22.0 requires Node
+^24.5 + Yarn 4; machine had Node 22 (at /usr/local/bin, shadowing a Homebrew Node 25). Installed
+`brew node@24` (v24.18.0, keg-only) — use via `PATH=/opt/homebrew/opt/node@24/bin:$PATH`.
+
+Scaffolded via `create-twenty-app@2.22.0` into ~/AI/Personal/lead-scoring-agent (yarn4, node-modules
+linker, .nvmrc 24.5.0, own git initial commit). OAuth to the sandbox succeeded during scaffold; the
+scaffold's step-6 sync failed transiently but `yarn twenty dev --once` then synced cleanly (6 objects
+added). App live in workspace. README updated with planning links (uncommitted).
+
+## 2026-07-20 — TCA-6 spike done (GA API shapes from installed types)
+
+Subagent read installed twenty-sdk/twenty-client-sdk types. Findings → `docs/decisions/D-TCA-ga-api-shapes.md`.
+Key wins: (1) **native `createdBy.source` ACTOR flag** (`IMPORT`/`MANUAL`/`API`) replaces the
+count-based burst detector — simpler/reliable TCA-9, kills Q6; (2) CoreApiClient is **genql-only**
+(`query`/`mutation`, `new CoreApiClient()` from env — PRD's `findOne`/`createOne`/`context` were wrong);
+(3) view sorts use `fieldMetadataUniversalIdentifier` + `ViewSortDirection.DESC`, `ViewKey.INDEX`;
+(4) activity via `timelineActivities`/`noteTargets`/`taskTargets`; (5) `defineField` shape confirmed for TCA-3.
+Open: Q3 event-name pluralization (person.created vs people.created) — verify live at TCA-9.
+Next: TCA-3 (custom fields).
 
 **Open items**
 - Confirm with Twenty team whether apps are derivative works of AGPL core.
