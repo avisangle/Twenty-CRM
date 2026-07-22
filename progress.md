@@ -205,3 +205,18 @@ has no `modelId` → workspace-default model, metered by credits. See bug.md.
 Fix: restore credits (upgrade Twenty Cloud plan) OR self-host Twenty with own LLM key (no meter).
 Filed **TCA-13**: capture runAgent error + credit-aware re-queue (FAILED records aren't re-scored by
 backfill since it filters NULL-status).
+
+## 2026-07-22 — TCA-13 done via tdd→implement→review (merged + deployed)
+
+Full skill workflow in subagents: `tdd-prep` (failing tests) → `implement` (PR #1, 22/22 unit, /simplify)
+→ **independent** review (fresh subagent) → PASS → squash-merged to main (67d086b) → **deployed**
+(`twenty dev --once`, 6 functions updated in-place). Live behavior now: credit-exhaustion → QUEUED
+(auto-retries when credits return, rejected at credit check so no credit spent); genuine error → FAILED
+with reason in `leadScoreSummary` + `console.error`; backfill re-processes FAILED. Decision record D-TCA-13.
+Review minor findings (non-blocking): credit detection is string-match `/credits?\s+exhausted/i` (fragile
+if SDK rewords, but degrades to operator-recoverable); no bounded retry-count yet → TCA-10.
+Skill quirks flagged (overhauled skills): (1) new worktree had no node_modules (node-modules linker —
+implementer symlinked); (2) initial file writes hit main not the worktree (self-corrected; main verified
+clean). Review-side worktree teardown + squash-merge worked correctly.
+Still blocked on AI credits (trial ended). Optional: re-queue the 2 FAILED records so they auto-score
+when credits return.
