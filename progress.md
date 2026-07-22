@@ -193,3 +193,5 @@ confirm production route URL as follow-up. Lesson: verify on real/existing data 
 - Confirm with Twenty team whether apps are derivative works of AGPL core.
 - Confirm Twenty's native WhatsApp roadmap timing before scheduling 02.
 - Trademark consent needed before marketing "for Twenty CRM" (ToS is broad).
+
+User confirmed live in UI: scores visible + sorted DESC in the "by Lead Score" views on real data. v1 shipped.
