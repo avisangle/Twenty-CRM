@@ -166,6 +166,17 @@ retry. **Manual acceptance still open:** (a) confirm/set the leads view as UI de
 (b) scoring-quality gate — sanity-check score spread on cold→hot leads with a real pipeline.
 All 9 stories (TCA-2..TCA-10) + spike Done. Both repos pushed.
 
+## 2026-07-22 — Quality gate PASSED
+
+Created 4 test people (title-only, cold→hot), auto-scored live, then deleted (0 remaining, confirmed):
+Student Intern=8, Marketing Coordinator=22, Director of Sales=45, CRO=60. Strictly ascending, no
+inversions — scorer behaving correctly. ~4 AI credits. Insight: title-only tops at 60 (agent is
+conservative on sparse data) → richer scores need company/activity enrichment (TCA-11 + real data).
+Op note: local ~/.twenty tokens had expired (~40h) and were refreshed; deployed functions use
+server-side auth so production scoring is unaffected.
+
+**v1 DONE + verified.** Only manual item left: confirm/set the leads view as UI default (sort-by-score AC).
+
 **Open items**
 - Confirm with Twenty team whether apps are derivative works of AGPL core.
 - Confirm Twenty's native WhatsApp roadmap timing before scheduling 02.
