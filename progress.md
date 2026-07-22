@@ -177,6 +177,18 @@ server-side auth so production scoring is unaffected.
 
 **v1 DONE + verified.** Only manual item left: confirm/set the leads view as UI default (sort-by-score AC).
 
+## 2026-07-22 — UI-review fixes: visible columns + backfill (real-data gap)
+
+User checked the frontend and saw no scores. Two real gaps found (lesson saved to memory):
+1. **Existing records unscored** — event-driven scoring never ran on pre-install records; no backfill existed.
+   → **TCA-12**: `backfill.function.ts` (POST /backfill) + `backfill.ts` (enqueue null-status → drainQueue scores).
+   Idempotent. Live: scored all 11 existing records (People 45-62, Opps 55-94). Commit 204aff0.
+2. **Score columns hidden** — views had sorts but no visible `fields`. → TCA-8 fix: added `fields`
+   (name/leadScore/leadScoreStatus + signal cols). Commit 5bdaf7d.
+typecheck 0, unit 16/16, sync ✓ (10 viewFields + backfill fn). TCA-12 → Done.
+Caveat: /backfill HTTP route URL unconfirmed (405 on candidates); backfill ran via direct enqueue —
+confirm production route URL as follow-up. Lesson: verify on real/existing data + real UI, not synthetic.
+
 **Open items**
 - Confirm with Twenty team whether apps are derivative works of AGPL core.
 - Confirm Twenty's native WhatsApp roadmap timing before scheduling 02.
