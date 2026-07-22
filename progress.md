@@ -195,3 +195,13 @@ confirm production route URL as follow-up. Lesson: verify on real/existing data 
 - Trademark consent needed before marketing "for Twenty CRM" (ToS is broad).
 
 User confirmed live in UI: scores visible + sorted DESC in the "by Lead Score" views on real data. v1 shipped.
+
+## 2026-07-22 — Incident: new-record scoring FAILED = AI credits exhausted (trial ended)
+
+New Person scored FAILED. Diagnosed (subagent, via replicating the runAgent /metadata call):
+**"Credits exhausted"** — workspace AI credits used up (user confirmed Twenty Cloud trial ended).
+NOT a code bug; enrichment fine; systemic (re-trigger also failed, 0 credits consumed). Our agent
+has no `modelId` → workspace-default model, metered by credits. See bug.md.
+Fix: restore credits (upgrade Twenty Cloud plan) OR self-host Twenty with own LLM key (no meter).
+Filed **TCA-13**: capture runAgent error + credit-aware re-queue (FAILED records aren't re-scored by
+backfill since it filters NULL-status).
