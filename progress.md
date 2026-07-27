@@ -237,4 +237,7 @@ real workspace id (bf296e46) absent from repo. One JWT in `vitest.config.ts` = T
 API key** (payload workspaceId `20202020-…` seed namespace, scaffold default; only works vs a locally-seeded
 instance) — harmless, left as-is. Git-commit email `aavi.sangle@gmail.com` is public (normal for public repos).
 Fixed: removed sandbox URL from README. Added Install section + `.claude/` to .gitignore (commit a73d3b6).
-Optional cleanups offered: env-ify the seed JWT; trim internal Jira/Confluence refs from the public README.
+Then trimmed the public README: removed "Planning & tracking" (private repo path, Confluence 753665, Jira
+keys, stale table), genericized the personal `/opt/homebrew/opt/node@24` toolchain note, pointed tests at
+`test:unit` (commit 098aa04). Remaining optional: env-ify the seed JWT in vitest.config.ts (left as-is —
+scaffold default, not sensitive).
