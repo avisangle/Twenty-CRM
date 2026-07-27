@@ -220,3 +220,12 @@ implementer symlinked); (2) initial file writes hit main not the worktree (self-
 clean). Review-side worktree teardown + squash-merge worked correctly.
 Still blocked on AI credits (trial ended). Optional: re-queue the 2 FAILED records so they auto-score
 when credits return.
+
+## 2026-07-27 — Publish prep (public npm path)
+
+Chose public-npm distribution. Prep on app repo: added `twenty-app` keyword + npm metadata + MIT LICENSE
+(commit d38cd4f); `yarn twenty dev:build` clean (10 files); **repo flipped PUBLIC**
+(github.com/avisangle/lead-scoring-agent). npm name `lead-scoring-agent` is available; not npm-logged-in.
+Publish mechanics (Twenty docs): `app:publish` → npm (default, public → marketplace) or `--private -r <remote>`
+(tarball → one instance). Final step is user's: `npm login` → `yarn twenty app:publish`. Self-hosted
+instances surface npm apps via `yarn twenty dev:catalog-sync`; install via Settings → Applications.
