@@ -241,3 +241,14 @@ Then trimmed the public README: removed "Planning & tracking" (private repo path
 keys, stale table), genericized the personal `/opt/homebrew/opt/node@24` toolchain note, pointed tests at
 `test:unit` (commit 098aa04). Remaining optional: env-ify the seed JWT in vitest.config.ts (left as-is —
 scaffold default, not sensitive).
+
+## 2026-07-27 — PUBLISHED to npm 🚀
+
+User ran `npm login` + `yarn twenty app:publish`. **`lead-scoring-agent@0.1.0` is live on npm** (MIT,
+`twenty-app` keyword) — https://www.npmjs.com/package/lead-scoring-agent. Installable into any Twenty
+workspace (Settings → Applications; self-hosted via `dev:catalog-sync`). App repo public at
+github.com/avisangle/lead-scoring-agent.
+
+**01 Lead Scoring: COMPLETE** — PRD → breakdown → build (TDD/implement/review) → deployed → verified on
+real data → hardened → published. Standing: AI credits to run scoring (Cloud plan or self-host+own key);
+official Cloud marketplace featuring may need Twenty vetting. Next candidate per build-now ranking: 03 PostHog.
