@@ -229,3 +229,12 @@ Chose public-npm distribution. Prep on app repo: added `twenty-app` keyword + np
 Publish mechanics (Twenty docs): `app:publish` → npm (default, public → marketplace) or `--private -r <remote>`
 (tarball → one instance). Final step is user's: `npm login` → `yarn twenty app:publish`. Self-hosted
 instances surface npm apps via `yarn twenty dev:catalog-sync`; install via Settings → Applications.
+
+## 2026-07-27 — Security audit of now-public app repo + README/gitignore polish
+
+Audited tracked files + full git history: **no real secrets** — `.twenty`/`.env` gitignored, never committed;
+real workspace id (bf296e46) absent from repo. One JWT in `vitest.config.ts` = Twenty's **public seed/demo
+API key** (payload workspaceId `20202020-…` seed namespace, scaffold default; only works vs a locally-seeded
+instance) — harmless, left as-is. Git-commit email `aavi.sangle@gmail.com` is public (normal for public repos).
+Fixed: removed sandbox URL from README. Added Install section + `.claude/` to .gitignore (commit a73d3b6).
+Optional cleanups offered: env-ify the seed JWT; trim internal Jira/Confluence refs from the public README.
