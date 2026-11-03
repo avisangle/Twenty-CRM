@@ -266,3 +266,5 @@ official Cloud marketplace featuring may need Twenty vetting. Next candidate per
 - 2026-11-01 TCA-16/17: 0.3.0 verified on Cloud (6 people + 6 opportunities scored, status page renders); author set to ReportStack, unreleased (app PR #9)
 - 2026-11-01 TCA-18/19: least-privilege role, listing README (privacy, pricing, support), 4 gallery images; released 0.4.0 with provenance, verified on Cloud (upgrade 0.3.0→0.4.0 logged, live re-score works, status page renders, listing shows ReportStack + gallery) (app PRs #10, #11, #12)
 - 2026-11-03 TCA-20: PostHog activity sync PRD approved; Epic TCA-20 with 12 stories (TCA-21..32) created; app repo avisangle/posthog-activity-sync created (private, PRD only); TCA-22 spike waits on user's PostHog keys
+- 2026-11-03 TCA-21: app scaffold, PostHog settings, Person-only role, CI merged via /develop-epic (posthog-activity-sync #1, fe09360)
+- 2026-11-03 TCA-25: Person PostHog fields, Recently active view, sidebar item merged via /develop-epic (posthog-activity-sync #2, f6dbf63); CI green on main
