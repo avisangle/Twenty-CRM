@@ -252,3 +252,17 @@ github.com/avisangle/lead-scoring-agent.
 **01 Lead Scoring: COMPLETE** — PRD → breakdown → build (TDD/implement/review) → deployed → verified on
 real data → hardened → published. Standing: AI credits to run scoring (Cloud plan or self-host+own key);
 official Cloud marketplace featuring may need Twenty vetting. Next candidate per build-now ranking: 03 PostHog.
+- 2026-10-24 GH issue #1: replied to Brad Slavin's hiring inquiry; two stmr comments are unsolicited contractor spam, left unhidden (no commit)
+- 2026-10-31 SDK + ideas review: twenty-sdk 2.22.0 -> 2.54.3 (MIT since 2.26, CLI split to `twenty` pkg, timeline/kv/jobs/messaging APIs); ideas re-ranked vs 48 npm apps, recommend lead-scoring upgrade then 03 PostHog (no commit)
+- 2026-10-31 lead-scoring-agent SDK 2.54.3 upgrade: green locally (lint/typecheck/22 unit/2 integration on Twenty 2.54), fixed silent empty-activity bug, v0.2.0 on branch SDK-2.54-UPGRADE (uncommitted)
+- 2026-10-31 TCA-14: SDK 2.54.3 upgrade merged (lead-scoring-agent PR #2, ac4aabb), CI green; marketplace listing blocked on user npm + Twenty sign-in
+- 2026-11-01 TCA-14: lead-scoring-agent 0.2.0 published to npm with provenance after pinning npm 11 (app PR #4, 89fe911); Twenty claim pending GitHub OAuth
+- 2026-11-01 TCA-14: lead-scoring-agent claimed by lead-scoring workspace (Owner, NPM 0.2.0); listing deferred to marketplace review, see pending.md
+- 2026-11-01 TCA-14: Cloud install fix (function role non-assignable) released as 0.2.1 with provenance (app PR #5, 5206957); waiting on Twenty hourly catalog sync
+- 2026-11-01 TCA-15: animated logo + listing metadata (category, support email, links) merged (app PR #6, 49cde53); ships with next release
+- 2026-11-01 TCA-15: logo animation tweaked per feedback (5 s, 3/4 ring sweep, sequential bar highlight) (app PR #7)
+- 2026-11-01 lead-scoring: verified Cloud scoring end to end (Test User scored 40 with summary); found existing records not backfilled on install (bug.md)
+- 2026-11-01 TCA-16: post-install backfill (skips no-signal records) + status page with score button released as 0.3.0 with provenance (app PR #8, 5fedf91); Cloud upgrade waiting on hourly catalog sync
+- 2026-11-01 TCA-16/17: 0.3.0 verified on Cloud (6 people + 6 opportunities scored, status page renders); author set to ReportStack, unreleased (app PR #9)
+- 2026-11-01 TCA-18/19: least-privilege role, listing README (privacy, pricing, support), 4 gallery images; released 0.4.0 with provenance, verified on Cloud (upgrade 0.3.0→0.4.0 logged, live re-score works, status page renders, listing shows ReportStack + gallery) (app PRs #10, #11, #12)
+- 2026-11-03 TCA-20: PostHog activity sync PRD approved; Epic TCA-20 with 12 stories (TCA-21..32) created; app repo avisangle/posthog-activity-sync created (private, PRD only); TCA-22 spike waits on user's PostHog keys
