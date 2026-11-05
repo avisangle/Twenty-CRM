@@ -282,3 +282,4 @@ official Cloud marketplace featuring may need Twenty vetting. Next candidate per
 - 2026-11-05 TCA-20: 11 merged, 1 parked (TCA-32 needs interactive Twenty login); L3 CLEAN, L4 reconciled (#1-#3, #5, #6, #8-#14, #16, #17)
 - 2026-11-05 TCA-20 integrate level 2 (r2): /review PASS, rebased onto main (pending.md conflict resolved), merged (#15, b39e8d7)
 - 2026-11-05 TCA-20 /integrate 2 (r3): PASSED, convergence/seams/structure/decisions clean, suite green on b39e8d7 incl. CI integration run (Jira TCA-20 comment)
+- 2026-11-05 TCA-32: app installed on lead-scoring.twenty.com with 2 test people; live walk and gallery blocked (workspace credits exhausted until 2026-11-07 18:27 UTC, UI sign-in needed); branch TCA-32 local, no PR
