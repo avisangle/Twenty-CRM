@@ -87,3 +87,15 @@ scored record. Around 250 installs the idle ticks alone use the whole budget.
 **Fix:** not started. Docs pattern: the cron only enqueues a job with a random `delayMs`, skip
 work when nothing is queued (e.g. a KV "queue non-empty" flag set by the event trigger), and
 run the drain less often.
+
+## 2026-11-05 — posthog-activity-sync: budget-exhausted message and unchecked project ID
+
+Found by `/integrate 2` (r3) on main `b39e8d7`; outside its level, so not fixed.
+- **Wrong message when the PostHog query budget is used up.** `PostHogError.budgetExceeded`
+  (`src/lib/posthog-client.ts:130`) is only logged by `sync.ts:86`. The health check and the
+  activity route show the plain rate-limit text ("try again in a minute"), which can be false for
+  up to an hour. Fix: give `budgetExceeded` its own message in both consumers.
+- **`POSTHOG_PROJECT_ID` not validated.** `settings.ts:33` checks only non-empty; the value goes
+  unencoded into URLs (`posthog-client.ts:98`, `queries.ts:161`). Fix: accept digits only.
+- **Doc gap:** `D-TCA-20-sync-cursor-window.md` omits that a timeout halves the window and stops
+  the cursor at the midpoint (`sync.ts:142`).

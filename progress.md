@@ -268,3 +268,17 @@ official Cloud marketplace featuring may need Twenty vetting. Next candidate per
 - 2026-11-03 TCA-20: PostHog activity sync PRD approved; Epic TCA-20 with 12 stories (TCA-21..32) created; app repo avisangle/posthog-activity-sync created (private, PRD only); TCA-22 spike waits on user's PostHog keys
 - 2026-11-03 TCA-21: app scaffold, PostHog settings, Person-only role, CI merged via /develop-epic (posthog-activity-sync #1, fe09360)
 - 2026-11-03 TCA-25: Person PostHog fields, Recently active view, sidebar item merged via /develop-epic (posthog-activity-sync #2, f6dbf63); CI green on main
+- 2026-11-05 TCA-20: levels 1-2 merged + TCA-26 (app PRs #3-#8); TCA-27/28/26 revised; run stopped on usage limit with TCA-28 PR #9 open, TCA-27 mid-implement
+- 2026-11-04 TCA-20: 2 merged, 2 parked; TCA-27 escalated by /integrate 1, TCA-24 TYPE2 (#3, #5 merged; #4 open)
+- 2026-11-04 TCA-27: /revise applied, writer aligned with D-TCA-22, TCA-29/TCA-30 inputs updated, reset to /tdd-prep (Jira)
+- 2026-11-04 TCA-24: /revise, D-TCA-22 TCA-24 line to be superseded by D-TCA-24-caller-clock-windows; PR #4 closed, branch/worktree removed, TCA-28/29/30 inputs updated; reset to /tdd-prep (PR #4 closed)
+- 2026-11-04 TCA-20 /integrate 1: PASSED on rerun after TCA-24/TCA-27 revisions, level 2 (TCA-24) unblocked (Jira TCA-20 comment)
+- 2026-11-04 TCA-20: 5 merged, 3 parked (TCA-26/27/28 need /revise after /integrate 1 escalated), 4 blocked (#1, #2, #3, #5, #6)
+- 2026-11-04 TCA-27: /revise (2nd) applied, all-four-fields payload formally supersedes D-TCA-22 via D-TCA-27-shared-write-lease, one shared lease and offset window; TCA-29/TCA-30 inputs updated; worktree and branch removed (no PR)
+- 2026-11-04 TCA-28: /revise applied, error mapping uses the eight real PostHogErrorKind names (bad_query/server_error to generic error), deps gain now, client timeoutMs 7000; nothing to clean up, TCA-31 unaffected (Jira TCA-28 comment)
+- 2026-11-04 TCA-26: /revise applied, added 12-row health result table, D-TCA-22 probe-only rule, no-email WARNING, 12 s probe timeout; TCA-32 input relinked (Jira comments 23498, 23499)
+- 2026-11-05 TCA-20 /integrate 1: RECONCILE, D-TCA-22/D-TCA-24 partial-supersession wording aligned, D-TCA-20-partial-supersession added (#7)
+- 2026-11-05 TCA-20 /integrate 2: PASSED, code/seams/structure clean, suite green on 8ef2129; only record finding (D-TCA-22/24 profile host wording) already fixed in open #7; level 3 unblocked (Jira TCA-20 comment)
+- 2026-11-05 TCA-20: 11 merged, 1 parked (TCA-32 needs interactive Twenty login); L3 CLEAN, L4 reconciled (#1-#3, #5, #6, #8-#14, #16, #17)
+- 2026-11-05 TCA-20 integrate level 2 (r2): /review PASS, rebased onto main (pending.md conflict resolved), merged (#15, b39e8d7)
+- 2026-11-05 TCA-20 /integrate 2 (r3): PASSED, convergence/seams/structure/decisions clean, suite green on b39e8d7 incl. CI integration run (Jira TCA-20 comment)
