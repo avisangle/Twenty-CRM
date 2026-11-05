@@ -99,3 +99,13 @@ Found by `/integrate 2` (r3) on main `b39e8d7`; outside its level, so not fixed.
   unencoded into URLs (`posthog-client.ts:98`, `queries.ts:161`). Fix: accept digits only.
 - **Doc gap:** `D-TCA-20-sync-cursor-window.md` omits that a timeout halves the window and stops
   the cursor at the midpoint (`sync.ts:142`).
+
+## 2026-11-05 — posthog-activity-sync: typecheck fails against a workspace-generated client
+
+Found by `/implement TCA-32` after `twenty app apply` on lead-scoring.twenty.com.
+- **Symptom.** `apply` (and `dev`) regenerate `node_modules/twenty-client-sdk/dist/core/generated`
+  from the live schema; `yarn typecheck` then fails in `src/lib/match-people.ts:70,73` (`filter:
+  unknown` is not `PersonFilterInput`; `people` may be `undefined`) and `src/lib/activity.ts:64`
+  (`person` may be `undefined`). CI passes because it uses the stock client.
+- **Fix:** type `readPeople`'s `filter` as `PersonFilterInput` and allow `undefined` in the
+  `PeoplePage`/`PersonEmail` result types. Workaround: reinstall `twenty-client-sdk`.
